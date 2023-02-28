@@ -27,7 +27,7 @@ import lombok.ToString;
 @ToString
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "properties", uniqueConstraints = {@UniqueConstraint(columnNames = {"adressID"})})
+@Table(name = "properties", uniqueConstraints = {@UniqueConstraint(columnNames = {"addressID"})})
 public class Property {
     @Id
     private UUID id;
@@ -48,12 +48,12 @@ public class Property {
     private LocalDate updatedAt;
 
     @OneToMany(mappedBy = "id")
-    private List<UserProperties> UserProperties;
+    private List<Schedule> Schedule;
 
 
     @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "adressId", referencedColumnName = "id")
-    private Adress adress;
+    @JoinColumn(name = "addressId", referencedColumnName = "id")
+    private Address address;
 
     @ManyToOne
     @JoinColumn(name = "categoryId")

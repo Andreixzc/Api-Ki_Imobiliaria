@@ -15,7 +15,6 @@ import javax.swing.text.html.Option;
 public abstract class CrudController<T,ID> {
     //rota
     protected abstract CrudService<T,ID> getService();
-
     @GetMapping
     public ResponseEntity<List<T>> listar(){
         return new ResponseEntity<>(getService().listAll(),HttpStatus.OK);

@@ -22,8 +22,7 @@ import lombok.Setter;
 public class Category {
     @Id
     private UUID id;
-    @UniqueElements
-    @Column(nullable = false)
+    @Column(nullable = false,unique = true)
     private String name;
 
     @OneToMany(mappedBy = "id")

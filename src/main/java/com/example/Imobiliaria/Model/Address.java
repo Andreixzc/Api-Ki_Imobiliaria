@@ -17,8 +17,8 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name="adresses")
-public class Adress {
+@Table(name="addresses")
+public class Address {
     @Id
     private UUID id;
 
@@ -37,7 +37,7 @@ public class Adress {
     @Column(nullable = false)
     private String state;
 
-    @OneToOne(mappedBy = "adress")
+    @OneToOne(mappedBy = "address")
     private Property property;
 
 

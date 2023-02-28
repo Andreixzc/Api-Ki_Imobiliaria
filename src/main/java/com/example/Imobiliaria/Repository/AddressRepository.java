@@ -2,8 +2,8 @@ package com.example.Imobiliaria.Repository;
 
 import java.util.UUID;
 import org.springframework.data.jpa.repository.JpaRepository;
-import com.example.Imobiliaria.Model.Adress;
+import com.example.Imobiliaria.Model.Address;
 
-public interface AdressRepository extends JpaRepository<Adress, UUID> {
+public interface AddressRepository extends JpaRepository<Address, UUID> {
     
 }

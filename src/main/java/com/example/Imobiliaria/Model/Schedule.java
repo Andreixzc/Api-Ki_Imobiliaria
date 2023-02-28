@@ -22,7 +22,7 @@ import lombok.ToString;
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(name = "schedules_users_properties")
-public class UserProperties {
+public class Schedule {
     @Id
     private UUID id;
 
