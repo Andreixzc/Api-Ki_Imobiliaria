@@ -35,7 +35,7 @@ public abstract class CrudController<T,ID> {
         return new ResponseEntity<>(updatedEntity,HttpStatus.OK);
     }
     @DeleteMapping("/{id}")
-    public ResponseEntity<Optional> deletar(@PathVariable ID id){
+    public ResponseEntity<?> deletar(@PathVariable ID id){
         return new ResponseEntity<>(getService().deleteById(id),HttpStatus.OK);
     }
 
