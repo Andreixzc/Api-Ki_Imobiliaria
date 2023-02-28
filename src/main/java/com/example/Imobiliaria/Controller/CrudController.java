@@ -5,6 +5,7 @@ import java.util.Optional;
 
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import com.example.Imobiliaria.Service.CrudService;
@@ -19,21 +20,23 @@ public abstract class CrudController<T,ID> {
     public ResponseEntity<List<T>> listar(){
         return new ResponseEntity<>(getService().listAll(),HttpStatus.OK);
     }
-
     @GetMapping("/{id}")
     public  ResponseEntity<T> listarId(@PathVariable ID id){
-        Optional<T> entidade = getService().findByID(id);
-        return entidade.map(e-> new ResponseEntity<>(e,HttpStatus.OK)).orElseGet(()-> new ResponseEntity<>(HttpStatus.NOT_FOUND));
+        Optional<T> entity = getService().findByID(id);
+        return entity.map(e-> new ResponseEntity<>(e,HttpStatus.OK)).orElseGet(()-> new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }
     @PostMapping()
-    public ResponseEntity<T> cadastrar(@RequestBody @Valid T entidade){
-        return new ResponseEntity<>(getService().create(entidade),HttpStatus.CREATED);
+    public ResponseEntity<T> cadastrar(@RequestBody @Valid T entity){
+        return new ResponseEntity<>(getService().create(entity),HttpStatus.CREATED);
     }
     @PutMapping("/{id}")
     public ResponseEntity<?> editar(@PathVariable ID id, @RequestBody @Valid T entidade){
-        Optional<T> entidadeAtualizada = getService().update(id,entidade);
-        return new ResponseEntity<>(entidadeAtualizada,HttpStatus.OK);
+        Optional<T> updatedEntity = getService().update(id,entidade);
+        return new ResponseEntity<>(updatedEntity,HttpStatus.OK);
     }
-
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Optional> deletar(@PathVariable ID id){
+        return new ResponseEntity<>(getService().deleteById(id),HttpStatus.OK);
+    }
 
 }
