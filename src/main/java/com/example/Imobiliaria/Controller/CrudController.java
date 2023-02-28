@@ -30,9 +30,13 @@ public abstract class CrudController<T,ID> {
         return new ResponseEntity<>(getService().create(entity),HttpStatus.CREATED);
     }
     @PutMapping("/{id}")
-    public ResponseEntity<?> editar(@PathVariable ID id, @RequestBody @Valid T entidade){
+    public ResponseEntity<T> editar(@PathVariable ID id, @RequestBody @Valid T entidade){
         Optional<T> updatedEntity = getService().update(id,entidade);
-        return new ResponseEntity<>(updatedEntity,HttpStatus.OK);
+        if (updatedEntity.isPresent()){
+            return new ResponseEntity<>(updatedEntity.get(),HttpStatus.OK);
+        }
+        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+
     }
     @DeleteMapping("/{id}")
     public ResponseEntity<?> deletar(@PathVariable ID id){

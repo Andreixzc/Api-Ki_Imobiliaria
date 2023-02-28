@@ -19,11 +19,14 @@ import java.util.List;
 @Setter
 @Getter
 @ToString
-@NoArgsConstructor
+//@NoArgsConstructor
 @AllArgsConstructor
 @Table(name = "Users")
 //one to many seria um array na entidade 'one'?
 public class User {
+    public User (){
+        this.setActive(true);
+    }
     @Id
     private UUID id;
 

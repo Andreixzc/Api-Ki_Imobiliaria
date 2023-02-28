@@ -25,12 +25,13 @@ public class UserController extends CrudController<User,UUID> {
     @Override
     @DeleteMapping("/{id}")
     public ResponseEntity<String> deletar(@PathVariable UUID id){
-        if (getService().findByID(id).isPresent()) {
-            Optional<User> user = getService().findByID(id);
+        Optional<User> user = getService().findByID(id);
+        if (user.isPresent()){
             user.get().setActive(false);
-            return new ResponseEntity<>("Usuario não esta mais ativo",HttpStatus.OK); 
+            getService().update(id,user.get());
+            return new ResponseEntity<>("User is no longer active",HttpStatus.NO_CONTENT);
         }
-        return new ResponseEntity<>("Usuário não existe",HttpStatus.NOT_FOUND);
+        return new ResponseEntity<>("User does not exist",HttpStatus.NOT_FOUND);
 
        
         
