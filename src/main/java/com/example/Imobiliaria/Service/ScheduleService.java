@@ -3,14 +3,8 @@ package com.example.Imobiliaria.Service;
 import com.example.Imobiliaria.Controller.ScheduleController;
 import com.example.Imobiliaria.Model.Schedule;
 import com.example.Imobiliaria.Repository.ScheduleRepository;
-import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.UUID;
@@ -42,7 +36,7 @@ public class ScheduleService extends CrudService<Schedule, UUID> {
         if (validateScheduleDay(entity.getDate()) && validateScheduleHour(entity.getHour()) && res == 0){
             scheduleController.cadastrar(entity);
         }
-        return null;
+        throw new RuntimeException("Error");
 
     }
 

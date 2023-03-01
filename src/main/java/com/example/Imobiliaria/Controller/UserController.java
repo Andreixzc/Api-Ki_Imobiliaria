@@ -1,11 +1,8 @@
 package com.example.Imobiliaria.Controller;
-
-import java.net.http.HttpHeaders;
 import java.util.Optional;
 import java.util.UUID;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import com.example.Imobiliaria.Model.User;
@@ -29,7 +26,7 @@ public class UserController extends CrudController<User,UUID> {
         if (user.isPresent()){
             user.get().setActive(false);
             getService().update(id,user.get());
-            return new ResponseEntity<>("User is no longer active",HttpStatus.NO_CONTENT);
+            return new ResponseEntity<>("User is no longer active",HttpStatus.OK);
         }
         return new ResponseEntity<>("User does not exist",HttpStatus.NOT_FOUND);
 
